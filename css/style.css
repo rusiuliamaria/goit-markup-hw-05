@@ -57,14 +57,41 @@ body {
   display: flex;
   gap: 50px;
 }
+.nav-link:hover {
+  color: var(--blue-hover-color);
+  stroke: var(--blue-hover-color);
+}
 
+/* Elementele din meniul de navigare sunt subliniate  */
+.nav-list a:after,
+.nav-list a::after {
+  content: "";
+  height: 4px;
+  width: auto;
+  border-radius: 15px;
+  position: absolute;
+  top: 15px;
+  left: 0;
+  border-bottom: 5px solid var(--blue-hover-color);
+}
+.nav-list a:hover::after,
+.nav-list a:active::after {
+  width: 100%;
+}
+/*.nav-bar a.nav-link:active::after {
+  width: 100%;
+}*/
 .nav-link {
   text-decoration: none;
   color: var(--primary-text-color);
   font-weight: 500;
   line-height: 16.41px;
-  font-size: 14px;
+  font-size: 16px;
   font-family: var(--roboto-font);
+  position: relative;
+  transition-duration: 0.5s;
+  transition-property: width;
+  border-bottom: 5px solid transparent;
 }
 /* Contacts header */
 .contact-links {
@@ -79,20 +106,21 @@ body {
   font-size: 14px;
   color: var(--secundary-text-color);
 }
-.contact-link:hover,
-.contact-link:focus {
+.contact-links:hover,
+.contact-links:focus {
   color: var(--blue-hover-color);
-  text-decoration: underline;
+  text-decoration: none;
 }
-.nav-link:hover,
-.nav-link:focus {
-  color: var(--blue-hover-color);
-}
+
 .nav-contact {
   display: flex;
   gap: 10px;
   align-items: center;
   flex-direction: row;
+}
+.nav-contact :hover {
+  color: var(--blue-hover-color);
+  stroke: var(--blue-hover-color);
 }
 /* Icons for mail adres and mobile phone section  */
 .nav-icon__item {
@@ -103,10 +131,6 @@ body {
   fill: var(--secondary-text-color);
 }
 
-.nav-icon__item:hover,
-.nav-icon__item:focus {
-  stroke: var(--blue-hover-color);
-}
 /* Hero section and  background with image */
 
 .hero-section .container {
@@ -119,6 +143,7 @@ body {
   background-size: cover;
   width: 1600px;
   max-width: 100%;
+  position: relative;
 }
 .hero-content {
   display: flex;
@@ -145,10 +170,12 @@ body {
   line-height: 30px;
   font-family: inherit;
   border-radius: 4px;
-  border: none;
+  border: 3px solid var(--primary-text-color);
   padding: 10px 20px;
   letter-spacing: 0.06em;
   cursor: pointer;
+  transition-property: color, background-color, transform;
+  transition-duration: 1s, 1s, 1, 5s;
 }
 .hero-button:hover,
 .hero-button:focus {
@@ -272,11 +299,16 @@ body {
 .about-customer__icon:hover,
 .about-customer__icon:focus {
   border: 1px solid var(--blue-hover-color);
-  fill: #2196f3;
+  stroke: var(--blue-hover-color);
+  border: 1px solid rgba(33, 150, 243, 1);
 }
 .about-customer__icon-svg {
   width: 100px;
   height: 60px;
+  fill: var(--secundary-text-color);
+}
+.about-customer__icon-svg:hover {
+  fill: var(--blue-hover-color);
 }
 /*Footer section  */
 .footer-section .container {
@@ -312,7 +344,7 @@ body {
 .address-link:hover,
 .address-link:focus {
   color: var(--blue-hover-color);
-  text-decoration: underline;
+  text-decoration: none;
 }
 /* Find us  info section with social links icons  */
 .find-us__section {
@@ -491,4 +523,38 @@ body {
   font-size: 14px;
   line-height: 16.41px;
   letter-spacing: 0.03em;
+}
+/* Hero section cu adaugarea si stilizarea ferestrei modale */
+.is-hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+[data-modal] {
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  justify-content: baseline;
+}
+[data-modal-content] {
+  width: 528px;
+  height: 581px;
+  background-color: var(--white-color);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(1);
+  transition-duration: 1s;
+}
+.is-hidden [data-modal-content] {
+  transform: translate(-50%, -50%) scale(0.5);
+}
+[data-modal-close] {
+  position: absolute;
+  top: 15px;
+  right: 15px;
 }
