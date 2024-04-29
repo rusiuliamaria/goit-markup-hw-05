@@ -18,6 +18,12 @@ body {
   margin: 0;
   padding: 0;
 }
+a {
+  text-decoration: none;
+  transition-property: color;
+  transition-duration: 250ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
 /* Header section */
 .header-section {
   display: flex;
@@ -57,14 +63,19 @@ body {
   display: flex;
   gap: 50px;
 }
-.nav-link:hover {
+.nav-link:hover,
+.nav-link:active {
   color: var(--blue-hover-color);
   stroke: var(--blue-hover-color);
+  /*border-bottom: 5px solid var(--blue-hover-color);*/
 }
-
+.border {
+  border-bottom: 5px solid var(--blue-hover-color);
+  padding: 3px;
+}
 /* Elementele din meniul de navigare sunt subliniate  */
-.nav-list a:after,
-.nav-list a::after {
+.nav-link a:after,
+.nav-link a::after {
   content: "";
   height: 4px;
   width: auto;
@@ -74,9 +85,11 @@ body {
   left: 0;
   border-bottom: 5px solid var(--blue-hover-color);
 }
-.nav-list a:hover::after,
-.nav-list a:active::after {
+
+.nav-link a:hover::after,
+.nav-link a:active::after {
   width: 100%;
+  color: var(--blue-hover-color);
 }
 /*.nav-bar a.nav-link:active::after {
   width: 100%;
@@ -91,7 +104,6 @@ body {
   position: relative;
   transition-duration: 0.5s;
   transition-property: width;
-  border-bottom: 5px solid transparent;
 }
 /* Contacts header */
 .contact-links {
@@ -106,22 +118,17 @@ body {
   font-size: 14px;
   color: var(--secundary-text-color);
 }
-.contact-links:hover,
-.contact-links:focus {
+.nav-contact:hover a {
   color: var(--blue-hover-color);
-  text-decoration: none;
+  stroke: var(--blue-hover-color);
 }
-
 .nav-contact {
   display: flex;
   gap: 10px;
   align-items: center;
   flex-direction: row;
 }
-.nav-contact :hover {
-  color: var(--blue-hover-color);
-  stroke: var(--blue-hover-color);
-}
+
 /* Icons for mail adres and mobile phone section  */
 .nav-icon__item {
   width: 16px;
@@ -300,15 +307,16 @@ body {
 .about-customer__icon:focus {
   border: 1px solid var(--blue-hover-color);
   stroke: var(--blue-hover-color);
-  border: 1px solid rgba(33, 150, 243, 1);
+  fill: var(--blue-hover-color);
 }
 .about-customer__icon-svg {
   width: 100px;
   height: 60px;
-  fill: var(--secundary-text-color);
+  
 }
-.about-customer__icon-svg:hover {
+.about-customer__icon-svg a:hover a {
   fill: var(--blue-hover-color);
+  stroke: var(--blue-hover-color);
 }
 /*Footer section  */
 .footer-section .container {
